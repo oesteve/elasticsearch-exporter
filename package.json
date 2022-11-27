@@ -1,0 +1,14 @@
+{
+  "name": "elasticsearch-exporter",
+  "version": "1.0.0",
+  "description": "ElasticSearch exporting tool",
+  "type": "module",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@opensearch-project/opensearch": "^2.1.0",
+    "cli-progress": "^3.11.2",
+    "commander": "^9.4.1"
+  }
+}
