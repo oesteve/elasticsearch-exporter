@@ -9,7 +9,7 @@ const onHourBefore = new Date();
 onHourBefore.setHours(onHourBefore.getHours() - 1);
 const untilFormatted = onHourBefore.toLocaleString()
 
-const defaultPageSize = 1000;
+const defaultPageSize = 5000;
 
 program
     .name('string-util')
@@ -24,7 +24,7 @@ program
     .option('-u, --until <until>', 'Until', untilFormatted)
     .option('-d, --debug', 'Enable debug mode', false)
     .option('-tf, --timeField <timeField>', 'Sort time field', 'takeOn')
-    .option('-fs, --fileSize <fileSize>', 'Max number of lines per file', (5 * defaultPageSize).toString())
+    .option('-fs, --fileSize <fileSize>', 'Max number of lines per file', 100000)
     .option('-l, --limit <limit>', 'Max result size');
 
 program.parse();

@@ -15,7 +15,7 @@ export let wroteLines = 0;
 export let fileNumber = 0;
 
 export function writePage(pageData){
-    const fileName = getFilePath(pageData);
+    const fileName = creteOrGetFilename(pageData);
 
     pageData.forEach((rows) => {
         
@@ -31,10 +31,11 @@ export function writePage(pageData){
 
 }
 
-function getFilePath(pageData){
+function creteOrGetFilename(pageData){
     let fileName = fileNamePrefix;
     const header = Object.keys(pageData[0]).join(SEPARATOR) + EOL
-    fileNumber = Math.round(wroteLines / fileSize);
+    
+    fileNumber = Math.floor(wroteLines / fileSize);
     
     if(fileNumber !== 0){
         fileName += '_'+fileNumber

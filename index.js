@@ -15,8 +15,8 @@ try {
     progressBar.start(total, 0, payload());
 
     await read((pageData) => {
-        progressBar.increment(pageData.length, payload())
         writePage(pageData)
+        progressBar.increment(pageData.length, payload())
     })
 
     progressBar.stop();
