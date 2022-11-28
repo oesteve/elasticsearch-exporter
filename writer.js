@@ -43,6 +43,10 @@ function creteOrGetFilename(pageData){
         fileName += '_'+fileNumber
     }
 
+    if (!fs.existsSync(outputDir)){
+        fs.mkdirSync(outputDir);
+    }
+    
     fileName += '.csv';
     fileName = path.resolve(outputDir, fileName);
 
