@@ -2,12 +2,12 @@ import {program} from "commander";
 
 
 let now = new Date();
-let atFormatted = now.toLocaleString();
+let atFormatted = now.toISOString();
 
 // 12 AM on June 20, 2022
-const onHourBefore = new Date();
-onHourBefore.setMinutes(onHourBefore.getMinutes() - 15);
-const untilFormatted = onHourBefore.toLocaleString()
+const fifteenMinutesBefore = new Date();
+fifteenMinutesBefore.setMinutes(fifteenMinutesBefore.getMinutes() - 15);
+const untilFormatted = fifteenMinutesBefore.toISOString()
 
 const defaultPageSize = 5000;
 
