@@ -35,7 +35,9 @@ function creteOrGetFilename(pageData){
     let fileName = fileNamePrefix;
     const header = Object.keys(pageData[0]).join(SEPARATOR) + EOL
     
-    fileNumber = Math.floor(wroteLines / fileSize);
+    if(fileSize){
+        fileNumber = Math.floor(wroteLines / fileSize);
+    }
     
     if(fileNumber !== 0){
         fileName += '_'+fileNumber
