@@ -9,6 +9,9 @@
   "scripts": {
     "export": "node index.js"
   },
+  "bin": {
+    "elasticsearch-exporter": "index.js"
+  },
   "dependencies": {
     "@opensearch-project/opensearch": "^2.1.0",
     "cli-progress": "^3.11.2",
