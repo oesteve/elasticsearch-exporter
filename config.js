@@ -12,26 +12,26 @@ const untilFormatted = onHourBefore.toLocaleString()
 const defaultPageSize = 5000;
 
 program
-    .name('string-util')
-    .description('CLI to some JavaScript string utilities')
+    .name('elasticsearch-exporter')
+    .description('ElasticSearch export tool')
     .version('0.8.0')
-    .requiredOption('-i, --index <index>', 'Index to search')
-    .requiredOption('-q --query <query>', 'The ElasticSearch query string, https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax')
+    .requiredOption('-i, --index <index>', 'index to search')
+    .requiredOption('-q --query <query>', 'the ElasticSearch query string, https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax')
     .option('-h, --host <host>', 'ElasticSearch URL', 'https://127.0.0.1:9200')
-    .option('-f, --fields <fields...>', 'specify fields')
-    .option('-ps, --pageSize <pageSize>', 'Search page size', defaultPageSize.toString())
-    .option('-a, --at <at>', 'The at date', atFormatted)
-    .option('-u, --until <until>', 'Until', untilFormatted)
-    .option('-d, --debug', 'Enable debug mode', false)
-    .option('-tf, --timeField <timeField>', 'Sort time field', 'takeOn')
-    .option('-fs, --fileSize <fileSize>', 'Max number of lines per file')
-    .option('-l, --limit <limit>', 'Max result size');
+    .option('-f, --fields <fields...>', 'fields to export in the .csv file')
+    .option('-ps, --pageSize <pageSize>', 'search page size', defaultPageSize.toString())
+    .option('-a, --at <at>', 'the at date', atFormatted)
+    .option('-u, --until <until>', 'until', untilFormatted)
+    .option('-d, --debug', 'enable debug mode', false)
+    .option('-tf, --timeField <timeField>', 'sort time field', 'takeOn')
+    .option('-fs, --fileSize <fileSize>', 'max number of lines per file')
+    .option('-l, --limit <limit>', 'max result size');
 
 program.parse();
 
 const optionValues = program.opts();
 
-if(optionValues.debug){
+if (optionValues.debug) {
     console.log('Config:', optionValues);
 }
 
