@@ -13,23 +13,31 @@ const client = new Client({
 function buildQuery() {
     const atMillis = new Date(at).getTime();
     const untilMillis = new Date(until).getTime()
+    
+    const should = query.map(term => {
+        const [key, value] = term.split(':')
+        
+        return {
+            match: {
+                [key]: value
+            }
+        }
+    })
 
     return {
         bool: {
-            must: [
-                {
-                    range: {
-                        [timeField]: {
-                            "lt": atMillis,
-                            "gte": untilMillis
-                        }
-                    }
-                }, {
-                    query_string: {
-                        query,
-                    }
+            filter: [{
+                bool: {
+                    should
                 },
-            ]
+            }, {
+                range: {
+                    [timeField]: {
+                        "lt": atMillis,
+                        "gte": untilMillis
+                    }
+                }
+            }]
         }
     };
 }

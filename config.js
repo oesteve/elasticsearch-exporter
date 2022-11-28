@@ -6,7 +6,7 @@ let atFormatted = now.toLocaleString();
 
 // 12 AM on June 20, 2022
 const onHourBefore = new Date();
-onHourBefore.setHours(onHourBefore.getHours() - 1);
+onHourBefore.setMinutes(onHourBefore.getMinutes() - 15);
 const untilFormatted = onHourBefore.toLocaleString()
 
 const defaultPageSize = 5000;
@@ -16,7 +16,7 @@ program
     .description('ElasticSearch export tool')
     .version('0.8.0')
     .requiredOption('-i, --index <index>', 'index to search')
-    .requiredOption('-q --query <query>', 'the ElasticSearch query string, https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax')
+    .requiredOption('-q --query <query...>', 'Match queries eg: "foo:bar"')
     .option('-h, --host <host>', 'ElasticSearch URL', 'https://127.0.0.1:9200')
     .option('-f, --fields <fields...>', 'fields to export in the .csv file')
     .option('-ps, --pageSize <pageSize>', 'search page size', defaultPageSize.toString())
