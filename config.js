@@ -24,7 +24,7 @@ program
     .option('-u, --until <until>', 'Until', untilFormatted)
     .option('-d, --debug', 'Enable debug mode', false)
     .option('-tf, --timeField <timeField>', 'Sort time field', 'takeOn')
-    .option('-fs, --fileSize <fileSize>', 'Max number of lines per file', 100000)
+    .option('-fs, --fileSize <fileSize>', 'Max number of lines per file', 10000)
     .option('-l, --limit <limit>', 'Max result size');
 
 program.parse();
