@@ -1,7 +1,7 @@
 import {Client} from "@opensearch-project/opensearch";
 import {getConfig} from "./config.js";
 
-const {host, index, pageSize, limit, at, until, fields, debug, query, timeField} = getConfig()
+const {host, index, pageSize, limit, start, end, fields, debug, query, timeField} = getConfig()
 
 const client = new Client({
     node: host,
@@ -11,8 +11,8 @@ const client = new Client({
 })
 
 function buildQuery() {
-    const atMillis = new Date(at).getTime();
-    const untilMillis = new Date(until).getTime()
+    const startMillis = new Date(start).getTime()
+    const endMillis = new Date(end).getTime();
     
     const should = query.map(term => {
         const [key, value] = term.split(':')
@@ -33,8 +33,8 @@ function buildQuery() {
             }, {
                 range: {
                     [timeField]: {
-                        "lt": atMillis,
-                        "gte": untilMillis
+                        "lt": endMillis,
+                        "gte": startMillis
                     }
                 }
             }]
