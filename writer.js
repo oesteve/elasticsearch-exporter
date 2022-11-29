@@ -8,7 +8,7 @@ const SEPARATOR = ';';
 const outputDir = 'out';
 const fileNamePrefix = 'output';
 
-const {fileSize, limit} = getConfig();
+const {fileSize, limit, timeField} = getConfig();
 
 let lastFileName;
 export let wroteLines = 0;
@@ -18,6 +18,8 @@ export function writePage(pageData){
     const fileName = creteOrGetFilename(pageData);
 
     pageData.forEach((rows) => {
+
+        rows = transform(rows);
         
         if(wroteLines >= limit) {
             return;
@@ -67,4 +69,23 @@ function cleanPreviousFiles(){
     fs.readdirSync(outputDir)
         .filter(f => regex.test(f))
         .map(f => fs.unlinkSync(path.resolve(outputDir, f)))
+}
+
+
+function transform(rows) {
+
+    const timeRow = rows[timeField];
+    
+    console.log(timeRow)
+    if(timeRow){
+        const time = new Date(parseInt(timeRow,10));
+        const timeFormat = `${time.toLocaleDateString('es-ES')} ${time.toLocaleTimeString('es-ES')}`
+        
+        return {
+            ...rows,
+            [timeField]: timeFormat
+        }
+    }
+    
+    return rows;
 }
