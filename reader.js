@@ -13,10 +13,10 @@ const client = new Client({
 function buildQuery() {
     const startMillis = new Date(start).getTime()
     const endMillis = new Date(end).getTime();
-    
+
     const should = query.map(term => {
         const [key, value] = term.split(':')
-        
+
         return {
             match: {
                 [key]: value
@@ -63,7 +63,7 @@ function processHits(hits) {
     return pageData
 }
 
-export const countResults = async () => {
+export async function countResults() {
     let searchParams = {
         index,
         body: {
@@ -80,7 +80,7 @@ export const countResults = async () => {
 
 }
 
-export const read = async (onNewPage) => {
+export async function read(onNewPage) {
 
     let searchParams = {
         index,
