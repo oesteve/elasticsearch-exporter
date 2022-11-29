@@ -71,14 +71,13 @@ function cleanPreviousFiles(){
         .map(f => fs.unlinkSync(path.resolve(outputDir, f)))
 }
 
-
 function transform(rows) {
 
     const timeRow = rows[timeField];
     
     if(timeRow){
         const time = new Date(parseInt(timeRow,10));
-        const timeFormat = `${time.toLocaleDateString('es-ES')} ${time.toLocaleTimeString('es-ES')}`
+        const timeFormat = `${time.getUTCFullYear()}/${format(time.getUTCMonth(),2)}/${format(time.getUTCDay(),2)} ${format(time.getUTCHours(), 2)}:${format(time.getUTCMinutes(),2)}:${format(time.getUTCSeconds(),2)}`
         
         return {
             ...rows,
@@ -87,4 +86,8 @@ function transform(rows) {
     }
     
     return rows;
+}
+
+function format(num, totalLength) {
+    return String(num).padStart(totalLength, '0');
 }
