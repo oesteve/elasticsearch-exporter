@@ -76,7 +76,6 @@ function transform(rows) {
 
     const timeRow = rows[timeField];
     
-    console.log(timeRow)
     if(timeRow){
         const time = new Date(parseInt(timeRow,10));
         const timeFormat = `${time.toLocaleDateString('es-ES')} ${time.toLocaleTimeString('es-ES')}`
